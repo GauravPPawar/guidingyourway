@@ -6,9 +6,10 @@
             <div class="col-lg-6 offset-3 mx-auto">
                 <div class="row">
                     <div class="panel panel-default d-flex flex-column justify-content-center">
-                        <h4 class="text-center font-weight-bold mt-4 pt-2">Find you best colleges according to the range
+                        <h4 class="text-center font-weight-bold mt-4 pt-2">Find the best colleges according to the range
                             of
-                            percentage.</h4>
+                            <span style="color: #fe3f40;">Rank</span> and <span style="color: #fe3f40;">Percentage</span></h4>
+                            <br>
                         <form class="panel-body bg-info p-4 d-flex flex-column justify-content-center"
                             action="/collegeFinder" method="POST">
                             <div class="form-group">
@@ -102,8 +103,8 @@
 
                                 <label class="text-white" for="exampleFormControlSelect1">Select Eligibility</label>
                                 <select class="form-control fixSize" name="critDropDown">
-                                    <option>Percentage</option>
                                     <option>Rank</option>
+                                    <option>Percentage</option>
                                 </select>
                                 <label class="text-white" for="exampleInputPassword1">From</label>
                                 <input type="textbox" class="form-control" name="fromPer" id="exampleInputPassword1"
