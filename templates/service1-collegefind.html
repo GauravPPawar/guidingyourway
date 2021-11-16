@@ -105,19 +105,34 @@
                                     <option>Percentage</option>
                                     <option>Rank</option>
                                 </select>
-                                <label class="text-white" for="exampleInputPassword1">Form</label>
+                                <label class="text-white" for="exampleInputPassword1">From</label>
                                 <input type="textbox" class="form-control" name="fromPer" id="exampleInputPassword1"
-                                    placeholder="" required>
+                                    placeholder="" pattern="[+-]?[0-9]+" 
+                                    title="Minimum range should only contain numbers it should not contain any character"
+                                    required>
+
                                 <label class="text-white" for="exampleInputPassword1">to</label>
                                 <input type="textbox" class="form-control" name="toPer" id="exampleInputPassword1"
-                                    placeholder="" required>
+                                    placeholder="" pattern="[+-]?[0-9]+"
+                                    title="Maximum range should only contain numbers number it should not contain any character"
+                                    required>
                             </div>
+                            
                             <button type="submit" class="btn btn-primary py-1 my-1 mx-auto">Submit</button>
+                            
                         </form>
                     </div>
 
                 </div>
             </div>
+
+            {% if flag == 1 %}
+            
+            <div class="alert alert-danger mt-4">
+                <center>{{msg}}</center>
+            </div>
+
+            {%else%}            
             <div class="container table-responsive pt-3">
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark bg-dark text-white">
@@ -138,6 +153,7 @@
                     </tbody>
                 </table>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

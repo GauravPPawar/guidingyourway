@@ -19,6 +19,7 @@ def homeLode():
 
 @app.route('/collegeFinder',methods=['GET','POST'])
 def collegeFinder():
+    f = 0
     if request.method == "POST":
         subGroup = request.form.get("subDropDown")
         cat = request.form.get("catDropDown")
@@ -31,8 +32,29 @@ def collegeFinder():
         print(toPer)
         headings = ['College Name','Sub Group','Category',str(criteria)]
         retData = getRes(subGroup,cat,fromPer,toPer,criteria)
-        return render_template('service1-collegefind.html',heading = headings,useData = retData)
-    return render_template('service1-collegefind.html', title='College Finding page')
+        if(criteria == 'Percentage' and (float(fromPer) < 0 or float(fromPer) > 100) ):
+            message = 'starting range of Percentage must be between 0 to 100'
+            f = 1
+            return render_template('service1-collegefind.html',msg = message,flag=f)
+        if(criteria == 'Percentage' and (float(toPer) < 0 or float(toPer) > 100) ):
+            message = 'ending range of Percentage must be between 0 to 100'
+            f = 1
+            return render_template('service1-collegefind.html',msg = message,flag=f)
+        if(criteria == 'Rank' and (float(fromPer) < 0 or float(fromPer) > 60000) ):
+            message = 'starting range of Rank must be between 0 to 60000'
+            f = 1
+            return render_template('service1-collegefind.html',msg = message,flag=f)
+        if(criteria == 'Rank' and (float(toPer) < 0 or float(toPer) > 60000) ):
+            message = 'Ending range of Rank must be between 0 to 60000'
+            f = 1
+            return render_template('service1-collegefind.html',msg = message,flag=f)
+        if(len(retData) == 0):
+            message = 'No Colleges found For the Given Range'
+            f = 1
+            return render_template('service1-collegefind.html',msg = message,flag=f)
+        retData.sort(key = lambda x: x[3],reverse=True)    
+        return render_template('service1-collegefind.html',heading = headings,useData = retData,flag=f)
+    return render_template('service1-collegefind.html', title='College Finding page',flag = f)
 
 @app.route('/contentFinder',methods=['GET','POST'])
 def contentFinder():
@@ -432,6 +454,5 @@ def getRes(subGroup,cast,fromPerStr,toPerStr,criteria):
     print(retData)
     return retData
     
-
 if __name__ == "__main__":
     app.run(debug=True)
