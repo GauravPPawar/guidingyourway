@@ -13,6 +13,14 @@
                         <form class="panel-body bg-info p-4 d-flex flex-column justify-content-center"
                             action="/collegeFinder" method="POST">
                             <div class="form-group">
+                                <label class="text-white" for="exampleFormControlInput1">Select Cutoff List Year</label>
+                                <select class="form-control fixSize" name="cutoffyear">
+                                    <option>DSE Cutoff 2019</option>
+                                    <option>DSE Cutoff 2020</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                            
                                 <label class="text-white" for="exampleFormControlInput1">Select Department</label>
                                 <select class="form-control" id="exampleFormControlSelect1"
                                     aria-label="Default select example" name="subDropDown">
@@ -108,13 +116,13 @@
                                 </select>
                                 <label class="text-white" for="exampleInputPassword1">From</label>
                                 <input type="textbox" class="form-control" name="fromPer" id="exampleInputPassword1"
-                                    placeholder="" pattern="[+-]?[0-9]+" 
+                                    placeholder="Enter start of the range" pattern="[+-]?[0-9]+" 
                                     title="Minimum range should only contain numbers it should not contain any character"
                                     required>
 
-                                <label class="text-white" for="exampleInputPassword1">to</label>
+                                <label class="text-white" for="exampleInputPassword1">To</label>
                                 <input type="textbox" class="form-control" name="toPer" id="exampleInputPassword1"
-                                    placeholder="" pattern="[+-]?[0-9]+"
+                                    placeholder="Enter end of the range" pattern="[+-]?[0-9]+"
                                     title="Maximum range should only contain numbers number it should not contain any character"
                                     required>
                             </div>
