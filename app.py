@@ -465,4 +465,4 @@ def getRes(subGroup,cast,fromPerStr,toPerStr,criteria,year):
     return retData
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
