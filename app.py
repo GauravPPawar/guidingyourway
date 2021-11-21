@@ -26,12 +26,14 @@ def collegeFinder():
         fromPer = request.form.get("fromPer")
         toPer = request.form.get("toPer")
         criteria = request.form.get("critDropDown")
+        year = request.form.get("cutoffyear")
         print(subGroup)
         print(cat)
         print(fromPer)
         print(toPer)
+        print(year)
         headings = ['College Name','Sub Group','Category',str(criteria)]
-        retData = getRes(subGroup,cat,fromPer,toPer,criteria)
+        retData = getRes(subGroup,cat,fromPer,toPer,criteria,year)
         if(criteria == 'Percentage' and (float(fromPer) < 0 or float(fromPer) > 100) ):
             message = 'starting range of Percentage must be between 0 to 100'
             f = 1
@@ -98,8 +100,11 @@ def getContent(course,dept,sem):
 
     return retData
 
-def getRes(subGroup,cast,fromPerStr,toPerStr,criteria):
-    f = open('static/data.json','r')
+def getRes(subGroup,cast,fromPerStr,toPerStr,criteria,year):
+    if year == "DSE Cutoff 2019":
+        f = open('static/data2019.json','r')
+    else:
+        f = open('static/data2020.json','r')
     x = f.read()
     data = j.loads(x)
     f.close()
@@ -436,8 +441,13 @@ def getRes(subGroup,cast,fromPerStr,toPerStr,criteria):
     if criteria == 'Percentage':
         criteria = 'percentage'
     else:
-        criteria = 'rank';
-
+        criteria = 'rank'
+    newList = []
+    if year == "DSE Cutoff 2020":
+        for i in range(len(subList)):
+            s = subList[i].find("[Sub Group")
+            newList.append(subList[i][:s])
+        subList = set(newList)
     retData = []
     for clg in clgList:
         for sub in subList:
